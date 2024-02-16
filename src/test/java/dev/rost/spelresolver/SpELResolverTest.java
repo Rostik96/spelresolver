@@ -20,7 +20,7 @@ class SpELResolverTest {
 
 	@Test
 	@SuppressWarnings("ConstantConditions")
-	void contextLoads() {
+	void spElResolvingTest() {
 		//language="SpEL"
 		var first = "${first}";
 		assertThat(spELResolver.resolveStringValue(first))
