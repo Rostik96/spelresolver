@@ -12,11 +12,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(properties = {"first=firstEnvValue", "second=secondEnvValue"})
 class SpELResolverTest {
 
-	@Autowired
-	SpELResolver spELResolver;
+	@Autowired Environment env;
+	@Autowired SpELResolver spELResolver;
 
-	@Autowired
-	Environment env;
+	@Autowired StringAppenderService strAppenderService;
 
 
 	@Test
@@ -30,11 +29,11 @@ class SpELResolverTest {
 		//language="SpEL"
 		var second = "#{stringAppender.append('${second}')}";
 		assertThat(spELResolver.resolveStringValue(second))
-				.isEqualTo(StringAppenderService.class.getSimpleName().concat(env.getProperty("second")));
+				.isEqualTo(strAppenderService.append(env.getProperty("second")));
 
 		//language="SpEL"
 		var third = "#{stringAppender.append('third')}";
 		assertThat(spELResolver.resolveStringValue(third))
-				.isEqualTo(StringAppenderService.class.getSimpleName().concat("third"));
+				.isEqualTo(strAppenderService.append("third"));
 	}
 }
