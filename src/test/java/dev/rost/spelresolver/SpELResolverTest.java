@@ -9,7 +9,10 @@ import org.springframework.core.env.Environment;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(properties = {"first=firstEnvValue", "second=secondEnvValue"})
+@SpringBootTest(properties = {
+		"first=firstEnvValue",
+		"second=secondEnvValue"
+})
 class SpELResolverTest {
 
 	@Autowired Environment env;
